@@ -9,6 +9,7 @@ include_directories(include)
 
 add_executable(
 	progra_tarea05
+	src/main.cpp
 	src/Block.cpp
 )
 
