@@ -2,7 +2,6 @@
 #include <iostream>
 
 Blockchain::Blockchain() {
-    // Bloque génesis: índice 0, sin hash previo, sin votos
     std::vector<Vote> emptyVotes;
     Block genesis(0, "0", emptyVotes);
     chain.push_back(genesis);
@@ -41,12 +40,10 @@ bool Blockchain::isChainValid() {
         Block& current  = chain[i];
         Block& previous = chain[i - 1];
 
-        // 1) El hash almacenado debe coincidir con el hash recalculado
         if (current.getCurrentHash() != current.generateHash()) {
             return false;
         }
 
-        // 2) El previousHash del bloque actual debe apuntar al hash del bloque anterior
         if (current.getPreviousHash() != previous.getCurrentHash()) {
             return false;
         }
