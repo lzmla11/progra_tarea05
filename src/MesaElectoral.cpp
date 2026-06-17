@@ -2,15 +2,13 @@
 #include <iostream>
 
 MesaElectoral::MesaElectoral(std::string nombre) : nombre(nombre) {
-    // Bloque génesis local (mismo que el de Blockchain)
     std::vector<Vote> emptyVotes;
     Block genesis(0, "0", emptyVotes);
     localChain.push_back(genesis);
 }
 
 void MesaElectoral::update(Block nuevoBloque) {
-    // Verificación simple: el previousHash del nuevo bloque debe coincidir
-    // con el currentHash del último bloque en la cadena local
+    // verificación: el previousHash del nuevo bloque debe coincidir con el currentHash del último bloque en la cadena local
     std::string expectedPrev = localChain.back().getCurrentHash();
 
     if (nuevoBloque.getPreviousHash() == expectedPrev) {
